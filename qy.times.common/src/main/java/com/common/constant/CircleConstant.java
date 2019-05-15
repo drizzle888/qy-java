@@ -8,4 +8,5 @@ public class CircleConstant {
 	/**缩圈间隔时间，单位毫秒*/
 	public static final int interval = 200;
 	// 测试3
+	// 测试4
 }
