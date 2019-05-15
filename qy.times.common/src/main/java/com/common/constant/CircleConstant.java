@@ -9,4 +9,5 @@ public class CircleConstant {
 	public static final int interval = 200;
 	// 测试3
 	// 测试4
+	// 测试5
 }
