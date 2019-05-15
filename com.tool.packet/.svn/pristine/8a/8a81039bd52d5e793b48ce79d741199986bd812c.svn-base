@@ -1,0 +1,23 @@
+using System;
+using System.Text;
+using CoffeeBean.Core;
+using System.Collections.Generic;
+
+namespace CoffeeBean.test
+{
+	public class LoginResponse : PackageBase 
+	{
+		public long memberId;
+		public PackageRole[] roles;
+
+		public override String ToString() 
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("LoginResponse[");
+			sb.Append(" memberId=" + memberId);
+			sb.Append(" roles=" + roles);
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+}

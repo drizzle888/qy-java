@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clazz package="com.common.protocol" name="NoticeVisionPlayer" parent="PackageBase" namespace="FPSClient">
+	<import>com.cb.msg.PackageBase</import>
+	<import>java.util.List</import>
+	<import>com.cb.msg.Message</import>
+	<import>java.util.ArrayList</import>
+	
+	<using>System</using>
+	<using>System.Text</using>
+	<using>System.Collections.Generic</using>
+	<using>CoffeeBean</using>
+	<using>CoffeeBean.Core</using>
+	
+	<field name="inPlayerList" type="List" generic="PackagePlayer" comment="视野范围内新进入的玩家列表"/>
+	<field name="outPlayerList" type="List" generic="PackagePlayer" comment="视野范围内走出去的玩家列表"/>
+</clazz>

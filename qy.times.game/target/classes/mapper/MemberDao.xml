@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.MemberDao">	
+	
+	<insert id="add" parameterType="com.common.entity.Member" useGeneratedKeys="true" keyProperty="id">
+		insert into member ( id
+			<if test="null != loginName">
+				, loginName
+			</if>
+			<if test="null != passwd">
+				, passwd
+			</if>
+			<if test="null != awtar">
+				, nick
+			</if>
+			<if test="null != nick">
+				, nick
+			</if>
+			<if test="null != gold">
+				, gold
+			</if>
+			<if test="null != phoneNumber">
+				, phoneNumber
+			</if>
+			<if test="null != isTest">
+				, isTest
+			</if>
+			<if test="null != state">
+				, state
+			</if>
+		) values ( #{id}
+			<if test="null != loginName">
+				, #{loginName}
+			</if>
+			<if test="null != passwd">
+				, #{passwd}
+			</if>
+			<if test="null != awtar">
+				, #{nick}
+			</if>
+			<if test="null != nick">
+				, #{nick}
+			</if>
+			<if test="null != gold">
+				, #{gold}
+			</if>
+			<if test="null != phoneNumber">
+				, #{phoneNumber}
+			</if>
+			<if test="null != isTest">
+				, #{isTest}
+			</if>
+			<if test="null != state">
+				, #{state}
+			</if>
+		)
+	</insert>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.Member">
+		select * from member where id = #{id}
+	</select>
+	
+	<select id="getByName" parameterType="String" resultType="com.common.entity.Member">
+		select * from member where loginName = #{loginName}
+	</select>
+	
+	<update id="update" parameterType="com.common.entity.Member">
+		update member 
+		<trim prefix="set" prefixOverrides=","> 
+			<if test="null != loginName">
+				, loginName = #{loginName}
+			</if>
+			<if test="null != sex">
+				, passwd = #{passwd}
+			</if>
+			<if test="null != awtar">
+				, awtar = #{awtar}
+			</if>
+			<if test="null != nick">
+				, nick = #{nick}
+			</if>
+			<if test="null != gold">
+				, gold = #{gold}
+			</if>
+			<if test="null != phoneNumber">
+				, phoneNumber = #{phoneNumber}
+			</if>
+			<if test="null != isTest">
+				, isTest = #{isTest}
+			</if>
+			<if test="null != state">
+				, state = #{state}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+</mapper>  

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clazz package="com.common.protocol" name="LoginRequest" parent="PackageBase" namespace="CoffeeBean.test">
+	<import>com.cb.msg.PackageBase</import>
+	
+	<using>System</using>
+	<using>System.Text</using>
+	<using>CoffeeBean.Core</using>
+	
+	<field name="loginName" type="string" />
+	<field name="passwd" type="string" />
+</clazz>

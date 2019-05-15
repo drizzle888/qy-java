@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.UserDao">
+
+	<select id="getByName" parameterType="String" resultType="com.manager.entity.User">
+		select * from manager_user where username = #{name}
+	</select>
+	
+	<select id="getUserById" parameterType="Long" resultType="com.manager.entity.User">
+		select * from manager_user where id = #{id}
+	</select>
+	
+	<select id="getUserByUserName" parameterType="String" resultType="com.manager.entity.User">
+		select * from manager_user where username = #{userName}
+	</select>
+	
+	<insert id="addUser" parameterType="com.manager.entity.User" useGeneratedKeys="true" keyProperty="id">
+		insert into manager_user ( username
+			, password
+			, lastLoginTime
+		) values ( #{username}
+			, #{password}
+			, #{lastLoginTime}
+		)
+	</insert>
+	
+	<update id="updateUser" parameterType="com.manager.entity.User">
+		update manager_user set 
+		<if test="null != username">
+			username = #{username}
+		</if>
+		<if test="null != password">
+			, password = #{password}
+		</if>
+		<if test="null != lastLoginTime">
+			, lastLoginTime = #{lastLoginTime}
+		</if>
+		<if test="null != loginTime">
+			, loginTime = #{loginTime}
+		</if>
+		where id = #{id}	
+	</update>
+	
+	<update id="changePassword" parameterType="com.manager.entity.User">
+		update manager_user set 
+		<if test="null != password">
+			  password = #{password}
+		</if>
+		<if test="null != lastLoginTime">
+			, lastLoginTime = #{lastLoginTime}
+		</if>
+		<if test="null != loginTime">
+			, loginTime = #{loginTime}
+		</if>
+		where id = #{id}	
+	</update>
+	
+	<update id="changeUser" parameterType="com.manager.entity.User">
+		update manager_user set 
+		<if test="null != realName">
+			  realName = #{realName}
+		</if>
+		where id = #{id}	
+	</update>
+
+</mapper>  

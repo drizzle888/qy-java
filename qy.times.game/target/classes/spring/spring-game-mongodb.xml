@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/data/mongo
+		http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
+	
+    <context:property-placeholder location="file:./config/mongodb.properties" ignore-unresolvable="true" />
+    
+    <mongo:mongo-client id="mongoClient" replica-set="${mongodb.replica}" credentials="${mongodb.credentials}">
+      <mongo:client-options
+              description="${mongodb.description}"
+              connections-per-host="${mongodb.connectionsPerHost}"
+              threads-allowed-to-block-for-connection-multiplier="${mongodb.threadsAllowedToBlockForConnectionMultiplier}"
+              connect-timeout="${mongodb.connectTimeout}"
+              max-wait-time="${mongodb.maxWaitTime}"
+              socket-keep-alive="${mongodb.socketKeepAlive}"
+              socket-timeout="${mongodb.socketTimeout}"
+              write-concern="${mongodb.writeConcern}"
+      />
+    </mongo:mongo-client>
+	<mongo:db-factory id="mongoDbFactory" dbname="${mongodb.database}" mongo-ref="mongoClient"  />
+    <mongo:template id="mongoTemplate" db-factory-ref="mongoDbFactory" />
+    
+    <!-- mongodb客户端 -->
+    <bean id="mongoDBClientService" class="com.game.access.MongoDBClientService">
+        <property name="mongoTemplate" ref="mongoTemplate" />
+    </bean>
+</beans>

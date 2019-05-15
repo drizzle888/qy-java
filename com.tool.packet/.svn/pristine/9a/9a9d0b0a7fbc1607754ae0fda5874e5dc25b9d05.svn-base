@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clazz package="com.common.protocol" name="PackagePlayer" parent="PackageBase" namespace="FPSClient">
+	<import>com.cb.msg.PackageBase</import>
+	
+	<using>System</using>
+	<using>System.Text</using>
+	<using>CoffeeBean.Core</using>
+	
+	<field name="roleId" type="long" />
+	<field name="awtar" type="string" />
+	<field name="hp" type="int" comment="血量" />
+	<field name="direction" type="float" comment="玩家方向" />
+	<field name="speed" type="float" comment="速度" />
+	<field name="x" type="float" comment="x坐标" />
+	<field name="z" type="float" comment="z坐标" />
+	<field name="buffSpeedId" type="int" comment="减速 buff Id"/>
+	<field name="buffSpeedBegin" type="long" comment="减速 buff开始时间戳，单位毫秒" />
+	<field name="buffSpeedLength" type="int" comment="减速 buff时长" />
+	<field name="buffDotId" type="int" comment="Dot buff Id"/>
+	<field name="buffDotBegin" type="long" comment="Dot buff开始时间戳，单位毫秒" />
+	<field name="buffDotLength" type="int" comment="Dot buff时长" />
+	<field name="buffNearId" type="int" comment="靠近 buff Id"/>
+	<field name="buffNearBegin" type="long" comment="靠近 buff开始时间戳，单位毫秒" />
+	<field name="buffNearLength" type="int" comment="靠近 buff时长" />
+	<field name="buffPushId" type="int" comment="远离 buff Id"/>
+	<field name="buffPushBegin" type="long" comment="远离 buff开始时间戳，单位毫秒" />
+	<field name="buffPushLength" type="int" comment="远离 buff时长" />
+	<field name="buffBlindId" type="int" comment="剥夺视野 buff Id"/>
+	<field name="buffBlindBegin" type="long" comment="剥夺视野 buff开始时间戳，单位毫秒" />
+	<field name="buffBlindLength" type="int" comment="剥夺视野 buff时长" />
+	<field name="buffHurtId" type="int" comment="伤害加深 buff Id"/>
+	<field name="buffHurtBegin" type="long" comment="伤害加深 buff开始时间戳，单位毫秒" />
+	<field name="buffHurtLength" type="int" comment="伤害加深 buff时长" />
+	<field name="buffValId" type="int" comment="数值提升 buff Id"/>
+	<field name="buffValBegin" type="long" comment="数值提升 buff开始时间戳，单位毫秒" />
+	<field name="buffValLength" type="int" comment="数值提升 buff时长" />
+	<field name="buffSilentId" type="int" comment="沉默 buff Id"/>
+	<field name="buffSilentBegin" type="long" comment="沉默 buff开始时间戳，单位毫秒" />
+	<field name="buffSilentLength" type="int" comment="沉默 buff时长" />
+	<field name="buffStopId" type="int" comment="禁步 buff Id"/>
+	<field name="buffStopBegin" type="long" comment="禁步 buff开始时间戳，单位毫秒" />
+	<field name="buffStopLength" type="int" comment="禁步 buff时长" />
+	<field name="buffDizzyId" type="int" comment="晕眩 buff Id"/>
+	<field name="buffDizzyBegin" type="long" comment="晕眩 buff开始时间戳，单位毫秒" />
+	<field name="buffDizzyLength" type="int" comment="晕眩 buff时长" />
+	<field name="buffTreatId" type="int" comment="治疗 buff Id"/>
+	<field name="buffTreatBegin" type="long" comment="治疗 buff开始时间戳，单位毫秒" />
+	<field name="buffTreatLength" type="int" comment="治疗 buff时长" />
+	<field name="buffRecoversId" type="int" comment="回复 buff Id"/>
+	<field name="buffRecoversBegin" type="long" comment="回复 buff开始时间戳，单位毫秒" />
+	<field name="buffRecoversLength" type="int" comment="回复 buff时长" />
+	<field name="buffShieldId" type="int" comment="护盾 buff Id"/>
+	<field name="buffShieldBegin" type="long" comment="护盾 buff开始时间戳，单位毫秒" />
+	<field name="buffShieldLength" type="int" comment="护盾 buff时长" />
+	<field name="buffClearId" type="int" comment="净化 buff Id"/>
+	<field name="buffClearBegin" type="long" comment="净化 buff开始时间戳，单位毫秒" />
+	<field name="buffClearLength" type="int" comment="净化 buff时长" />
+	<field name="buffLinkId" type="int" comment="链接 buff Id"/>
+	<field name="buffLinkBegin" type="long" comment="链接 buff开始时间戳，单位毫秒" />
+	<field name="buffLinkLength" type="int" comment="链接 buff时长" />
+</clazz>

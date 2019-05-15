@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.TeamDao">	
+	
+	<insert id="create" parameterType="com.common.entity.Team" useGeneratedKeys="true" keyProperty="id">
+		<!-- 创建Team表时，必须设置id从1001开始，否则NPC玩家的teamId可能会和真实玩家处于同一个Team -->
+		insert into team (id, createTime) values ( #{id}, #{createTime})
+	</insert>
+	
+	<delete id="delete" parameterType="Long">
+		delete from team where id = #{id}
+	</delete>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.Team">
+		select * from team where id = #{id}
+	</select>
+	
+</mapper>  

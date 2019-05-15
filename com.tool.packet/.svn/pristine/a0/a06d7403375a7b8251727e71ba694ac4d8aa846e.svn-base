@@ -1,0 +1,19 @@
+package com.common.protocol;
+
+import com.cb.msg.PackageBase;
+import java.util.List;
+import com.common.pkg.PackageRole;
+
+public class LoginResponse extends PackageBase {
+
+	public Long memberId;
+	public PackageRole[] roles;
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" memberId=" + memberId);
+		sb.append(" roles=" + roles);
+		return sb.toString();
+	}
+}

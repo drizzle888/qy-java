@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.TileWallDao">
+	
+	<select id="getList" parameterType="com.common.entity.TileWall" resultType="com.common.entity.TileWall">
+		select * from logic_tile_wall 
+		where 1 = 1
+		<if test="null != weight">
+			and weight = #{weight}
+		</if>
+		order by `id`
+	</select>
+	
+	<select id="getById" parameterType="Integer" resultType="com.common.entity.TileWall">
+		select * from logic_tile_wall where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.TileWall">
+		update logic_tile_wall set
+		<if test="null != tiles">
+			tiles = #{tiles}
+		</if>
+		<if test="null != weight">
+			, weight = #{weight}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<insert id="add" parameterType="com.common.entity.TileWall" useGeneratedKeys="true" keyProperty="id">
+		insert into logic_tile_wall ( 
+			  id
+			, tiles
+			, weight
+		) values ( 
+			  #{id}
+			, #{tiles}
+			, #{weight}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_tile_wall where id = #{id}
+	</delete> 
+
+</mapper>  

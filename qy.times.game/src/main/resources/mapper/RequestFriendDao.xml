@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.RequestFriendDao">	
+	
+	<insert id="add" parameterType="com.common.entity.RequestFriend" useGeneratedKeys="true" keyProperty="id">
+		insert into request_friend (id
+			<if test="null != memberId">
+				, memberId
+			</if>
+			<if test="null != beMemberId">
+				, beMemberId
+			</if>
+			<if test="null != isAgree">
+				, isAgree
+			</if>
+			<if test="null != createTime">
+				, createTime
+			</if>
+			<if test="null != updateTime">
+				, updateTime
+			</if>
+		) values ( #{id}
+			<if test="null != memberId">
+				, #{memberId}
+			</if>
+			<if test="null != beMemberId">
+				, #{beMemberId}
+			</if>
+			<if test="null != isAgree">
+				, #{isAgree}
+			</if>
+			<if test="null != createTime">
+				, #{createTime}
+			</if>
+			<if test="null != updateTime">
+				, #{updateTime}
+			</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.common.entity.RequestFriend">
+		update request_friend 
+		<trim prefix="set" prefixOverrides=","> 
+			<if test="null != isAgree">
+				, isAgree = #{isAgree}
+			</if>
+			<if test="null != updateTime">
+				, updateTime = #{updateTime}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from request_friend where id = #{id}
+	</delete>
+	
+	<delete id="clearHistoricalRecord" parameterType="Integer">
+		delete from request_friend where createTime &lt; #{time}
+	</delete>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.RequestFriend">
+		select * from request_friend where id = #{id}
+	</select>
+	
+	<select id="get" parameterType="com.common.entity.RequestFriend" resultType="com.common.entity.RequestFriend">
+		select * from request_friend where 1 = 1
+		<if test="null != updateTime">
+			and id = #{id}
+		</if>
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != beMemberId">
+			and beMemberId = #{beMemberId}
+		</if>
+		<if test="null != isAgree">
+			and isAgree = #{isAgree}
+		</if>
+		<if test="null != updateTime">
+			and updateTime = #{updateTime}
+		</if>
+	</select>
+	
+	<select id="getMyRequestInfoList" parameterType="Long" resultType="com.common.entity.RequestFriendInfo">
+		select m.id as memberId
+			, m.nick as nick
+			, rf.isAgree as isAgree
+			, rf.createTime as createTime
+		from request_friend rf left join member m
+			on rf.memberId = m.id
+		where memberId = #{memberId}
+	</select>
+	
+	<select id="getBeRequestInfoList" parameterType="Long" resultType="com.common.entity.RequestFriendInfo">
+		select m.id as memberId
+			, m.nick as nick
+			, rf.isAgree as isAgree
+			, rf.createTime as createTime
+		from request_friend rf left join member m
+			on rf.memberId = m.id
+		where beMemberId = #{beMemberId}
+	</select>
+</mapper>  

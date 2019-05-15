@@ -1,0 +1,19 @@
+package com.common.protocol;
+
+import com.cb.msg.PackageBase;
+
+public class LoginResponse extends PackageBase {
+
+	public long memberId;
+	public int gold;
+	public String phoneNumber;
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" memberId=" + memberId);
+		sb.append(" gold=" + gold);
+		sb.append(" phoneNumber=" + phoneNumber);
+		return sb.toString();
+	}
+}

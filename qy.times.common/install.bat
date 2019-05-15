@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=qy.times.common-1.0.0-SNAPSHOT.jar -DgroupId=com.qy -DartifactId=qy.times.common -Dversion=1.0.0-SNAPSHOT -Dpackaging=jar

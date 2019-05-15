@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.RoundResultDao">
+
+	<select id="getList" parameterType="com.common.entity.RoundResult" resultType="com.common.entity.RoundResult">
+		select * from logic_round_result 
+		where 1 = 1
+		<if test="null != roundCount">
+			and roundCount = #{roundCount}
+		</if>
+		<if test="null != roomId">
+			and roomId = #{roomId}
+		</if>
+		order by id
+	</select>
+	
+	<select id="getById" parameterType="Integer" resultType="com.common.entity.RoundResult">
+		select * from logic_round_result where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.RoundResult">
+		update logic_round_result set
+		<if test="null != roomId">
+			   roomId = #{roomId}
+		</if>
+		<if test="null != amount0">
+			, amount0 = #{amount0}
+		</if>
+		<if test="null != amount1">
+		    , amount1 = #{amount1}
+		</if>
+		<if test="null != amount2">
+			, amount2 = #{amount2}
+		</if>
+		<if test="null != amount3">
+			, amount3 = #{amount3}
+		</if>
+		<if test="null != masterIdx">
+			, masterIdx = #{masterIdx}
+		</if>
+		<if test="null != beginHands0">
+			, beginHands0 = #{beginHands0}
+		</if>
+		<if test="null != beginHands1">
+			, beginHands1 = #{beginHands1}
+		</if>
+		<if test="null != beginHands2">
+			, beginHands2 = #{beginHands2}
+		</if>
+		<if test="null != beginHands3">
+			, beginHands3 = #{beginHands3}
+		</if>
+		<!-- <if test="null != winType">
+			, winType = #{winType}
+		</if> -->
+		<if test="null != roundCount">
+			, roundCount = #{roundCount}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_round_result where id = #{id}
+	</delete>
+	 
+</mapper>  

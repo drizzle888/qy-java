@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.CountDao">
+
+	<select id="getOnLine" resultType="Integer">
+		select number from manager_online_number order by id
+	</select>
+
+	<select id="getNewAccount" resultType="Integer">
+		select newNumber from manager_new_account_number order by id
+	</select>
+	
+	<select id="getLostAccount" resultType="Integer">
+		select lostNumber from manager_new_account_number order by id
+	</select>
+	
+	<select id="getGoldACount" resultType="Integer">
+		select number from manager_gold_rang_number gr
+		where gr.range = 1 
+		order by time
+	</select>
+	
+	<select id="getGoldBCount" resultType="Integer">
+		select number from manager_gold_rang_number gr
+		where gr.range = 2
+		order by time
+	</select>
+	
+	<select id="getGoldCCount" resultType="Integer">
+		select number from manager_gold_rang_number gr
+		where gr.range = 3
+		order by time
+	</select>
+	
+	<select id="getGoldDCount" resultType="Integer">
+		select number from manager_gold_rang_number gr
+		where gr.range = 4
+		order by time
+	</select>
+	
+	<select id="getProfitList" resultType="Integer">
+		select day_profit from manager_day_profit 
+		order by time
+	</select>
+	
+	<!-- <select id="getList" parameterType="com.common.entity.GoldRecord" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record 
+		where 1 = 1
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != roomId">
+			and roomId = #{roomId}
+		</if>
+		order by memberId
+	</select>
+	
+	 <select id="getByMemberId" parameterType="Long" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record where memberId = #{memberId}
+	</select> -->
+	
+</mapper>  

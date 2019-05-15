@@ -1,0 +1,24 @@
+using System;
+using System.Text;
+using CoffeeBean.Core;
+
+namespace CoffeeBean.test
+{
+	public class LoginResponse : PackageBase 
+	{
+		public long memberId;
+		public int gold;
+		public string phoneNumber;
+
+		public override String ToString() 
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("LoginResponse[");
+			sb.Append(" memberId=" + memberId);
+			sb.Append(" gold=" + gold);
+			sb.Append(" phoneNumber=" + phoneNumber);
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+}

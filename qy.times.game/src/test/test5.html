@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>Insert title here</title>
+<script type="text/javascript" src="message.js"></script>
+<!-- <script type="text/javascript" src="encoder.js"></script> -->
+</head>
+<body>
+    <script type="text/javascript">
+ 
+        function str2bytes(x){
+            var bytes = bufferUtils.str2bytes(x);
+            var ta = document.getElementById('responseText');
+            ta.value += bytes + '\n';
+            return bytes;
+        }
+        
+        function bytes2str(x){
+            var val = bufferUtils.bytes2str(x);
+            var ta = document.getElementById('responseText');
+            ta.value += val + '\n';
+            return val;
+        }
+        
+        function short2bytes(x){
+            var bytes = bufferUtils.short2bytes(x);
+            var ta = document.getElementById('responseText');
+            ta.value += bytes + '\n';
+            return bytes;
+        }
+        
+        function bytes2short(x){
+            var val = bufferUtils.bytes2short(x);
+            var ta = document.getElementById('responseText');
+            ta.value += val + '\n';
+            return val;
+        }
+        
+        function int2bytes(x){
+            var bytes = bufferUtils.int2bytes(x);
+            var ta = document.getElementById('responseText');
+            ta.value += bytes + '\n';
+            return bytes;
+        }
+        
+        function bytes2int(x){
+            var val = bufferUtils.bytes2int(x);
+            var ta = document.getElementById('responseText');
+            ta.value += val + '\n';
+            return val;
+        }
+        
+        function long2bytes(x){
+            var bytes = bufferUtils.long2bytes(x);
+            var ta = document.getElementById('responseText');
+            ta.value += bytes + '\n';
+            return bytes;
+        }
+        
+        function bytes2long(x){
+            var val = bufferUtils.bytes2long(x);
+            var ta = document.getElementById('responseText');
+            ta.value += val + '\n';
+            return val;
+        }
+        
+        function test() {
+            var msg = new Message();
+            msg.putInt(123456);
+            msg.putShort(123);
+            msg.putString("zzw");
+            msg.putString("邹治武")
+            msg.flip();
+            console.log(msg.getInt());
+            console.log(msg.getShort());
+            console.log(msg.getString());
+            console.log(msg.getString());
+        }
+        
+        function ab2str(buf) {
+       	   return String.fromCharCode.apply(null, new Uint16Array(buf));
+       	}
+
+       	// 字符串转为ArrayBuffer对象，参数为字符串
+       	function str2ab(str) {
+       	    var buf = new ArrayBuffer(str.length*2); // 每个字符占用2个字节
+       	    var bufView = new Uint16Array(buf);
+       	    for (var i=0, strLen=str.length; i<strLen; i++) {
+       	         bufView[i] = str.charCodeAt(i);
+       	    }
+       	    return buf;
+       	}
+        
+        function sendMsg() {
+        	var buf = str2ab("z");
+            var str = ab2str(buf);
+            console.log(str);
+        }
+        
+
+    </script>
+    <form onsubmit="return false;">
+        <dir>
+            <input type="button" value="str2bytes" onclick="str2bytes('zouzhiwu')">
+            <input type="button" value="bytes2str" onclick="bytes2str([122,111,117,122,104,105,119,117])">
+        </dir>
+        <dir>
+            <input type="button" value="short2bytes" onclick="short2bytes(1234)">
+            <input type="button" value="bytes2short" onclick="bytes2short([4,210])">
+        </dir>
+        <dir>
+            <input type="button" value="int2bytes" onclick="int2bytes(12345678)">
+            <input type="button" value="bytes2int" onclick="bytes2int([0,188,97,78])">
+        </dir>
+        <dir>
+            <input type="button" value="long2bytes" onclick="long2bytes(1234567890123456)">
+            <input type="button" value="bytes2long" onclick="bytes2long([192,186,138,60,213,98,4,0])">
+        </dir>
+        
+        <dir>
+            <input type="button" value="test" onclick="test()">
+            <input type="button" value="sendMsg" onclick="sendMsg()">
+        </dir>
+        <h3>输出:</h3>
+        <textarea id="responseText" style="width: 500px; height: 300px;"></textarea>
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>聊天系统</title>
+<script type="text/javascript" src="chatsocket.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <form>
+        <div>
+            <input type="text" name="message" id="content" value='aaa'>
+            <input type="button" value="发送" onclick="send(2, 1, 1, 'tocken', $('#content').val())">
+        </div>
+        <br/>
+        <textarea id="responseText" style="width: 500px; height: 300px;"></textarea>
+    </form>
+    
+    <script type="text/javascript">
+        connect('ws://192.168.1.105:2048/ws', 2, document.getElementById("responseText"));
+    </script>
+</body>
+</html>

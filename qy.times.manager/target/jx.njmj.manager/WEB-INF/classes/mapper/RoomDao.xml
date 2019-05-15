@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.RoomDao">
+
+	<select id="getList" parameterType="com.common.entity.Room" resultType="com.common.entity.Room">
+		select * from logic_room 
+		where 1 = 1
+		<if test="null != createMemberId">
+			and createMemberId = #{createMemberId}
+		</if>
+		order by `id`
+	</select>
+	 
+	<select id="getById" parameterType="Integer" resultType="com.common.entity.Room">
+		select * from logic_room where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.Room">
+		update logic_room set
+		<if test="null != createMemberId">
+			   createMemberId = #{createMemberId}
+		</if>
+		<if test="null != roundCount">
+			, roundCount = #{roundCount}
+		</if>
+		<if test="null != type">
+			, type = #{type}
+		</if>
+		<if test="null != lowGold">
+			 , lowGold = #{lowGold}
+		</if>
+		<if test="null != limitGold">
+			, limitGold = #{limitGold}
+		</if>
+		<if test="null != manyGold">
+			 , manyGold = #{manyGold}
+		</if>
+		<if test="null != personGold">
+			, personGold = #{personGold}
+		</if>
+		<if test="null != number">
+			, number = #{number}
+		</if>
+		<if test="null != capScore">
+			, capScore = #{capScore}
+		</if>
+		<if test="null != grade">
+			, grade = #{grade}
+		</if>
+		<if test="null != roomTemplateId">
+			, roomTemplateId = #{roomTemplateId}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_room where id = #{id}
+	</delete>
+	 
+</mapper>  

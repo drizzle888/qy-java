@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.ScoreDao">	
+	
+	<insert id="create" parameterType="com.common.entity.Score" useGeneratedKeys="true" keyProperty="id">
+		insert into score(memberId, teamType, subject, value) values (#{memberId}, #{teamType}, #{subject}, #{value})
+	</insert>
+	
+	<update id="update" parameterType="com.common.entity.Score">
+		update score set value = value + #{value} where memberId = #{memberId} and teamType = #{teamType} and subject = #{subject}
+	</update>
+	
+	<select id="getByMemberId" parameterType="Long" resultType="com.common.entity.Score">
+		select * from score where memberId = #{memberId}
+	</select>
+	
+	<select id="getCount" parameterType="com.common.entity.Score" resultType="Integer">
+		select count(1) from score where memberId = #{memberId} and teamType = #{teamType} and subject = #{subject} limit 1;
+	</select>
+	
+</mapper>  

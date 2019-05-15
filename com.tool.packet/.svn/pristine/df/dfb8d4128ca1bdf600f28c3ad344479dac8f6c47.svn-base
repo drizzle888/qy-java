@@ -1,0 +1,22 @@
+using System;
+using System.Text;
+using CoffeeBean.Core;
+
+namespace CoffeeBean.test
+{
+	public class LoginRequest : PackageBase 
+	{
+		public string loginName;
+		public string passwd;
+
+		public override String ToString() 
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("LoginRequest[");
+			sb.Append(" loginName=" + loginName);
+			sb.Append(" passwd=" + passwd);
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+}

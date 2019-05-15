@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.RequestTeamDao">	
+	
+	<insert id="add" parameterType="com.common.entity.RequestTeam" useGeneratedKeys="true" keyProperty="id">
+		insert into request_team (id
+			<if test="null != memberId">
+				, memberId
+			</if>
+			<if test="null != teamId">
+				, teamId
+			</if>
+			<if test="null != isAgree">
+				, isAgree
+			</if>
+			<if test="null != createTime">
+				, createTime
+			</if>
+			<if test="null != updateTime">
+				, updateTime
+			</if>
+		) values ( #{id}
+			<if test="null != memberId">
+				, #{memberId}
+			</if>
+			<if test="null != teamId">
+				, #{teamId}
+			</if>
+			<if test="null != isAgree">
+				, #{isAgree}
+			</if>
+			<if test="null != createTime">
+				, #{createTime}
+			</if>
+			<if test="null != updateTime">
+				, #{updateTime}
+			</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.common.entity.RequestTeam">
+		update request_team 
+		<trim prefix="set" prefixOverrides=","> 
+			<if test="null != isAgree">
+				, isAgree = #{isAgree}
+			</if>
+			<if test="null != updateTime">
+				, updateTime = #{updateTime}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from request_team where id = #{id}
+	</delete>
+	
+	<delete id="clearHistoricalRecord" parameterType="Integer">
+		delete from request_team where createTime &lt; #{time}
+	</delete>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.RequestTeam">
+		select * from request_team where id = #{id}
+	</select>
+	
+	<select id="get" parameterType="com.common.entity.RequestTeam" resultType="com.common.entity.RequestTeam">
+		select * from request_team where 1 = 1
+		<if test="null != updateTime">
+			and id = #{id}
+		</if>
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != teamId">
+			and teamId = #{teamId}
+		</if>
+		<if test="null != isAgree">
+			and isAgree = #{isAgree}
+		</if>
+		<if test="null != updateTime">
+			and updateTime = #{updateTime}
+		</if>
+	</select>
+	
+	<select id="getRequestInfoList" parameterType="Long" resultType="com.common.entity.RequestTeamMemberInfo">
+		select rt.id as id
+			, rt.memberId as memberId
+			, m.nick as nick
+			, rt.createTime as createTime
+		from request_team rt left join member m
+			on rt.memberId = m.id
+		where teamId = #{teamId}
+	</select>
+</mapper>  

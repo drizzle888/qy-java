@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clazz package="com.common.protocol" name="LoginResponse" parent="PackageBase" namespace="FPSClient">
+	<import>com.cb.msg.PackageBase</import>
+	<import>com.cb.msg.Message</import>
+	
+	<using>System</using>
+	<using>System.Text</using>
+	<using>CoffeeBean</using>
+	<using>CoffeeBean.Core</using>
+	
+	<field name="isGaming" type="boolean" comment="是否在游戏中" />
+	<field name="memberId" type="long" />
+	<field name="gold" type="int" />
+	<field name="name" type="string" />
+	<field name="nick" type="string" />
+	<field name="phoneNumber" type="string" />
+	<field name="token" type="int" />
+</clazz>

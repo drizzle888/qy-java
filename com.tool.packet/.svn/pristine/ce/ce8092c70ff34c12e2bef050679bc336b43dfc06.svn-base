@@ -1,0 +1,26 @@
+using System;
+using System.Text;
+using CoffeeBean.Core;
+
+namespace FPSClient
+{
+	public class LoginResponse : PackageBase 
+	{
+		public long memberId;
+		public int gold;
+		public string name;
+		public string phoneNumber;
+
+		public override String ToString() 
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("LoginResponse[");
+			sb.Append(" memberId=" + memberId);
+			sb.Append(" gold=" + gold);
+			sb.Append(" name=" + name);
+			sb.Append(" phoneNumber=" + phoneNumber);
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+}

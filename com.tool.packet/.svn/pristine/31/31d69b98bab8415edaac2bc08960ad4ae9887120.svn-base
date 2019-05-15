@@ -1,0 +1,24 @@
+using System;
+using System.Text;
+using CoffeeBean.Core;
+
+namespace FPSClient
+{
+	public class NoticeVision : PackageBase 
+	{
+		/** 视野是否有变化 **/
+		public bool isChange;
+		/** 视野范围内的玩家列表 **/
+		public List<Player> playerList;
+
+		public override String ToString() 
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("NoticeVision[");
+			sb.Append(" isChange=" + isChange);
+			sb.Append(" playerList=" + playerList);
+			sb.Append("]");
+			return sb.ToString();
+		}
+	}
+}

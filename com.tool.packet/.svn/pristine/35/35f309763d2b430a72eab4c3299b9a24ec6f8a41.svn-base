@@ -1,0 +1,20 @@
+package com.common.protocol;
+
+import com.cb.msg.PackageBase;
+import java.util.List;
+
+public class NoticeVision extends PackageBase {
+
+	/** 视野是否有变化 **/
+	public boolean isChange;
+	/** 视野范围内的玩家列表 **/
+	public List<Player> playerList;
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" isChange=" + isChange);
+		sb.append(" playerList=" + playerList);
+		return sb.toString();
+	}
+}

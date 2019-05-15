@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>message</title>
+<script type="text/javascript" src="chatsocket.js"></script>
+<script type="text/javascript" src="encoder.js"></script>
+<script type="text/javascript" src="message.js"></script>
+<script type="text/javascript" src="byteBuffer.js"></script>
+<script type="text/javascript" src="bufferUtils.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <form>
+        <div>
+            <input type="text" name="message" id="content" value='aaa'>
+            <!-- <input type="button" value="send" onclick="send(1, 2, 1, 'tocken', $('#content').val())"> -->
+            <input type="button" value="send" onclick="sendmessage();">
+        </div>
+        <br/>
+        <textarea id="responseText" style="width: 500px; height: 300px;"></textarea>
+    </form>
+    
+    <script type="text/javascript">
+        connect('ws://127.0.0.1:2048/ws', 1);
+        
+        function sendmessage() {
+        	var msg = new Message();
+        	msg.setMsgcd(0x1001);
+        	msg.setRoleId(1);
+        	msg.setToken(2);
+        	msg.putInt(3);
+        	send(msg);
+        }
+    </script>
+</body>
+</html>

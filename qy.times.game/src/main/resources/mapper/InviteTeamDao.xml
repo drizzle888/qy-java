@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.InviteTeamDao">	
+	
+	<insert id="add" parameterType="com.common.entity.InviteTeam" useGeneratedKeys="true" keyProperty="id">
+		insert into invite_team (id
+			<if test="null != memberId">
+				, memberId
+			</if>
+			<if test="null != beMemberId">
+				, beMemberId
+			</if>
+			<if test="null != teamId">
+				, teamId
+			</if>
+			<if test="null != status">
+				, status
+			</if>
+			<if test="null != createTime">
+				, createTime
+			</if>
+			<if test="null != updateTime">
+				, updateTime
+			</if>
+		) values ( #{id}
+			<if test="null != memberId">
+				, #{memberId}
+			</if>
+			<if test="null != beMemberId">
+				, #{beMemberId}
+			</if>
+			<if test="null != teamId">
+				, #{teamId}
+			</if>
+			<if test="null != status">
+				, #{status}
+			</if>
+			<if test="null != createTime">
+				, #{createTime}
+			</if>
+			<if test="null != updateTime">
+				, #{updateTime}
+			</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.common.entity.InviteTeam">
+		update invite_team 
+		<trim prefix="set" prefixOverrides=","> 
+			<if test="null != status">
+				, status = #{status}
+			</if>
+			<if test="null != updateTime">
+				, updateTime = #{updateTime}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from invite_team where id = #{id}
+	</delete>
+	
+	<delete id="clearHistoricalRecord" parameterType="Integer">
+		delete from invite_team where createTime &lt; #{time}
+	</delete>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.InviteTeam">
+		select * from invite_team where id = #{id}
+	</select>
+	
+	<select id="get" parameterType="com.common.entity.InviteTeam" resultType="com.common.entity.InviteTeam">
+		select * from invite_team where 1 = 1
+		<if test="null != updateTime">
+			and id = #{id}
+		</if>
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != beMemberId">
+			and beMemberId = #{beMemberId}
+		</if>
+		<if test="null != teamId">
+			and teamId = #{teamId}
+		</if>
+		<if test="null != status">
+			and status = #{status}
+		</if>
+		<if test="null != updateTime">
+			and updateTime = #{updateTime}
+		</if>
+	</select>
+	
+</mapper>  

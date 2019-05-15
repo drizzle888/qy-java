@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.FriendDao">
+
+	<select id="getList" parameterType="com.common.entity.Friend" resultType="com.common.entity.Friend">
+		select * from logic_friend 
+		where 1 = 1
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != memberAlias">
+			and memberAlias like concat(concat('%',#{memberAlias}),'%')
+		</if>
+		order by id
+	</select>
+	 
+	 <select id="getById" parameterType="Integer" resultType="com.common.entity.Friend">
+		select * from logic_friend where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.Friend">
+		update logic_friend set
+		<if test="null != memberAlias">
+			   memberAlias = #{memberAlias}
+		</if>
+		<if test="null != memberAvatar">
+			 , memberAvatar = #{memberAvatar}
+		</if>
+		<if test="null != friendId">
+			, friendId = #{friendId}
+		</if>
+		<if test="null != friendAlias">
+			, friendAlias = #{friendAlias}
+		</if>
+		<if test="null != friendAvatar">
+			 , friendAvatar = #{friendAvatar}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_friend where id = #{id}
+	</delete>
+	 
+</mapper>  

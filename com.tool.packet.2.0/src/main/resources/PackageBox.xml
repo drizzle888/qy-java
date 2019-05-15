@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clazz package="com.common.protocol" name="PackageBox" parent="PackageBase" namespace="FPSClient">
+	<import>com.cb.msg.Message</import>
+	<import>com.cb.msg.PackageBase</import>
+	
+	<using>System</using>
+	<using>System.Text</using>
+	<using>CoffeeBean</using>
+	<using>CoffeeBean.Core</using>
+	
+	<field name="id" type="int" />
+	<field name="x" type="float" comment="x坐标" />
+	<field name="z" type="float" comment="z坐标" />
+	<field name="hp" type="int" comment="血量" />
+</clazz>

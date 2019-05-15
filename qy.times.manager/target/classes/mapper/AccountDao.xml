@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.AccountDao">
+
+	<select id="getList" parameterType="com.common.entity.Account" resultType="com.common.entity.Account">
+		select * from logic_account 
+		where 1 = 1
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != name">
+			and name like concat(concat('%',#{name}),'%')
+		</if>
+		order by memberId
+	</select>
+	
+	<!-- <select id="getAllList" resultType="com.manager.entity.Account">
+		select * from logic_account 
+	</select> -->
+	
+	<select id="getRoundList" parameterType="com.common.entity.Round" resultType="com.common.entity.Round">
+		select * from logic_account_round 
+		where 1 = 1
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		order by count
+	</select>
+	
+	<select id="getRoundByMemberId" parameterType="Long" resultType="com.common.entity.Round">
+		select * from logic_account_round where memberId = #{memberId}
+	</select>
+	
+	<select id="getByMemberId" parameterType="Long" resultType="com.common.entity.Account">
+		select * from logic_account where memberId = #{memberId}
+	</select>
+	
+	<select id="lockMemberId" parameterType="Long" resultType="com.common.entity.Account">
+		select * from logic_account where memberId = #{memberId} for update
+	</select>
+	
+	<select id="getByName" parameterType="String" resultType="com.common.entity.Account">
+		select * from logic_account 
+		where name = #{name}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.Account">
+		update logic_account set
+		<if test="null != name">
+			   name = #{name}
+		</if>
+		<if test="null != sex">
+			 , sex = #{sex}
+		</if>
+		<if test="null != loginTime">
+			, loginTime = #{loginTime}
+		</if>
+		<if test="null != logoutTime">
+			, logoutTime = #{logoutTime}
+		</if>
+		<if test="null != loginCount">
+			, loginCount = #{loginCount}
+		</if>
+		<if test="null != device">
+			, device = #{device}
+		</if>
+		<if test="null != roundCount">
+			, roundCount = #{roundCount}
+		</if>
+		<if test="null != gold">
+			, gold = #{gold}
+		</if>
+		<if test="null != score">
+			, score = #{score}
+		</if>
+		<if test="null != diamond">
+			, diamond = #{diamond}
+		</if>
+		<if test="null != lucky">
+			, lucky = #{lucky}
+		</if>
+		<if test="null != siteNo">
+			, siteNo = #{siteNo}
+		</if>
+		<if test="null != siteName">
+			, siteName = #{siteName}
+		</if>
+		<if test="null != isRobot">
+			, isRobot = #{isRobot}
+		</if>
+		<if test="null != icon">
+			, icon = #{icon}
+		</if>
+		<if test="null != platId">
+			, platId = #{platId}
+		</if>
+		<if test="null != channel">
+			, channel = #{channel}
+		</if>
+		<if test="null != level">
+			, level = #{level}
+		</if>
+		<if test="null != vipLv">
+			, vipLv = #{vipLv}
+		</if>
+		<if test="null != scoreLv">
+			, scoreLv = #{scoreLv}
+		</if>
+		<if test="null != avatar">
+			, avatar = #{avatar}
+		</if>
+		<if test="null != title">
+			, title = #{title}
+		</if>
+		<if test="null != ip">
+			, ip = #{ip}
+		</if>
+		<if test="null != invideCode">
+			, invideCode = #{invideCode}
+		</if>
+		<if test="null != accountState">
+			, accountState = #{accountState}
+		</if>
+		<if test="null != createTime">
+			, createTime = #{createTime}
+		</if>
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="roundEdit" parameterType="com.common.entity.Round">
+		update logic_account_round set
+		<if test="null != count">
+			  count = #{count}
+		</if>
+		where memberId = #{memberId}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from logic_account where memberId = #{memberId}
+	</delete>
+	
+	<delete id="roundDelete" parameterType="Long">
+		delete from logic_account_round where memberId = #{memberId}
+	</delete>
+	
+	<insert id="addNewAccountNumber" parameterType="com.common.entity.NewAccountNumber">
+		insert into manager_new_account_number ( id
+			, newNumber
+			, lostNumber
+			, time
+			, siteNo
+		) values ( #{id}
+			, #{newNumber}
+			, #{lostNumber}
+			, #{time}
+			, #{siteNo}
+		)
+	</insert>
+	
+	<select id="getNewAccount" parameterType="Integer" resultType="Integer">
+		select count(1) from logic_account t
+		 	where t.createTime >= (#{zeroTime} - (24 * 60 * 60)) 
+			and t.createTime &lt; #{zeroTime}
+	</select>
+	
+	<select id="getLostNumber" parameterType="Integer" resultType="Integer">
+		select count(1) from logic_account t
+ 			where t.logoutTime &lt; (#{zeroTime} - (7 * 24 * 60 * 60))
+	</select>
+	
+	<select id="getListAll" resultType="com.common.entity.Account">
+		select * from logic_account la
+		where 1 = 1
+		<if test="null != account.memberId">
+			and la.memberId = #{account.memberId}
+		</if>
+		<if test="null != account.name">
+			and la.name like concat(concat('%',#{account.name}),'%')
+		</if>
+		order by ${orderColumn} ${orderDir}
+		limit #{startIndex}, #{endIndex}
+	</select>
+	
+	<select id="getListTotalAll"  parameterType="com.common.entity.Account" resultType="Integer">
+		select count(*) from logic_account la
+		where 1 = 1
+		<if test="null != account.memberId">
+			and la.memberId = #{account.memberId}
+		</if>
+		<if test="null != account.name">
+			and la.name like concat(concat('%',#{account.name}),'%')
+		</if>
+	</select>
+	
+	
+</mapper>  

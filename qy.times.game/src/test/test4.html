@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test WebSocket</title>
+<script type="text/javascript" src="encoder.js"></script>
+<script type="text/javascript" src="decoder.js"></script>
+<script type="text/javascript" src="message.js"></script>
+<script type="text/javascript" src="remote.js"></script>
+<script type="text/javascript" src="roleAction.js"></script>
+<script type="text/javascript">
+    var ws = null;
+    function onConnect() {
+    	remote.connect();
+    }
+    
+    function onSendMsg() {
+		var content = document.getElementById("inputMessage").value;
+		var msg = new Message();
+		console.log(msg.getDeviceType());
+       	msg.setMsgcd(0x100E);
+       	msg.setRoleId("testId");
+       	msg.setToken(0);
+       	msg.putString(content);
+       	remote.sendmessge(msg);
+    }
+    
+    
+</script>
+</head>
+<body>
+	<div>
+	    <button id="connect" onclick="onConnect();">login</button>
+	</div>
+	<div>
+	    <input type="text" id="inputMessage" value="abcde">
+	    <button id="sendButton" onclick="onSendMsg();">send</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java=utf8
+encoding//src/main/resources/config/development/appconfig.properties=UTF-8
+encoding//src/main/resources/config/test/appconfig.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/ftl/hello.ftl=UTF-8
+encoding//src/main/webapp/_header.html=UTF-8
+encoding//src/test/java=utf8

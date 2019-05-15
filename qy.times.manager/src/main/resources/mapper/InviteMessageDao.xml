@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.InviteMessageDao">
+
+	<select id="getList" parameterType="com.common.entity.InviteMessage" resultType="com.common.entity.InviteMessage">
+		select * from logic_invite_message 
+		where 1 = 1
+		<if test="null != fromId">
+			and fromId = #{fromId}
+		</if>
+		<if test="null != roomId">
+			and roomId = #{roomId}
+		</if>
+		order by id
+	</select>
+	 
+	 <select id="getById" parameterType="Integer" resultType="com.common.entity.InviteMessage">
+		select * from logic_invite_message where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.InviteMessage">
+		update logic_invite_message set
+		<if test="null != content">
+			   content = #{content}
+		</if>
+		<if test="null != type">
+			 , type = #{type}
+		</if>
+		<if test="null != roomId">
+			, roomId = #{roomId}
+		</if>
+		<if test="null != playType">
+			, playType = #{playType}
+		</if>
+		<if test="null != lowGold">
+			 , lowGold = #{lowGold}
+		</if>
+		<if test="null != roundCount">
+			, roundCount = #{roundCount}
+		</if>
+		<if test="null != toId">
+			, toId = #{toId}
+		</if>
+		<if test="null != roomNumber">
+			, roomNumber = #{roomNumber}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_invite_message where id = #{id}
+	</delete>
+	 
+</mapper>  

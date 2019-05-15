@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.dao.FriendDao">	
+	
+	<insert id="add" parameterType="com.common.entity.Friend" useGeneratedKeys="true" keyProperty="id">
+		insert into friend (id
+			<if test="null != memberId">
+				, memberId
+			</if>
+			<if test="null != alias">
+				, alias
+			</if>
+			<if test="null != beMemberId">
+				, beMemberId
+			</if>
+			<if test="null != beAlias">
+				, beAlias
+			</if>
+			<if test="null != createTime">
+				, createTime
+			</if>
+			<if test="null != updateTime">
+				, updateTime
+			</if>
+		) values ( #{id}
+			<if test="null != memberId">
+				, #{memberId}
+			</if>
+			<if test="null != alias">
+				, #{alias}
+			</if>
+			<if test="null != beMemberId">
+				, #{beMemberId}
+			</if>
+			<if test="null != beAlias">
+				, #{beAlias}
+			</if>
+			<if test="null != createTime">
+				, #{createTime}
+			</if>
+			<if test="null != updateTime">
+				, #{updateTime}
+			</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.common.entity.Friend">
+		update friend 
+		<trim prefix="set" prefixOverrides=","> 
+			<if test="null != memberId">
+				, memberId = #{memberId}
+			</if>
+			<if test="null != alias">
+				, alias = #{alias}
+			</if>
+			<if test="null != beMemberId">
+				, beMemberId = #{beMemberId}
+			</if>
+			<if test="null != beAlias">
+				, beAlias = #{beAlias}
+			</if>
+			<if test="null != updateTime">
+				, updateTime = #{updateTime}
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from friend where id = #{id}
+	</delete>
+	
+	<select id="getById" parameterType="Long" resultType="com.common.entity.Friend">
+		select * from friend where id = #{id}
+	</select>
+	
+	<select id="getByMemberId" parameterType="Long" resultType="com.common.entity.Friend">
+		select * from friend 
+		where memberId = #{memberId} and beMemberId = #{beMemberId}
+	</select>
+	
+	<select id="getMyFriendList" parameterType="Long" resultType="com.common.entity.FriendInfo">
+		( 
+			select f.id
+				, f.beMemberId as memberId
+				, f.beAlias as alias
+				, m.phoneNumber as phoneNumber
+			from friend f left join member m 
+				on f.beMemberId = m.id
+			where f.memberId = #{memberId}
+		) union ( 
+			select f.id
+				, f.memberId as memberId
+				, f.alias as alias
+				, m.phoneNumber as phoneNumber
+			from friend f left join member m 
+				on f.memberId = m.id
+			where f.beMemberId = #{memberId}
+		)
+	</select>
+	
+</mapper>  

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.GoldRecordDao">
+
+	<select id="getList" parameterType="com.common.entity.GoldRecord" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record 
+		where 1 = 1
+		<if test="null != memberId">
+			and memberId = #{memberId}
+		</if>
+		<if test="null != roomId">
+			and roomId = #{roomId}
+		</if>
+		order by id desc
+	</select>
+	
+	<select id="getByMemberId" parameterType="Long" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record where memberId = #{memberId} desc
+	</select>
+	
+	<select id="getById" parameterType="Integer" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record where id = #{id}
+	</select>
+	
+	<select id="getAccountGoldList" parameterType="Long" resultType="Integer">
+		select after from logic_gold_record where memberId = #{memberId} order by createTime
+	</select>
+	
+	<update id="edit" parameterType="com.common.entity.GoldRecord">
+		update logic_gold_record set
+		<if test="null != amount">
+			   amount = #{amount}
+		</if>
+		<if test="null != after">
+			 , after = #{after}
+		</if>
+		<if test="null != remark">
+			, remark = #{remark}
+		</if>
+		<if test="null != type">
+			, type = #{type}
+		</if>
+		<if test="null != roomId">
+			, roomId = #{roomId}
+		</if>
+		where memberId = #{memberId}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_gold_record where id = #{id}
+	</delete>
+	 
+	<select id="getDayProfit" parameterType="Integer" resultType="Integer">
+		select sum(profit) from manager_profit where time between #{zero} and #{day} 
+	</select>
+	 
+	<insert id="updateProfit" parameterType="com.common.entity.DayProfit">
+		insert into manager_day_profit ( 
+			  day_profit
+			, time
+		) values ( 
+			  #{day_profit}
+			, #{time}
+		)
+	</insert>
+	
+	<insert id="updateGoldRange" parameterType="com.common.entity.GoldRangeNumber">
+		insert into manager_gold_rang_number ( 
+			  number
+			, time  
+			, `range`
+		) values (
+			  #{number}
+			, #{time}
+			, #{range}
+		)
+	</insert>
+	
+	<select id="getRange" parameterType="Integer" resultType="Integer">
+		select count(1) from logic_account t where t.gold >= #{start} and t.gold &lt;= #{end} 
+	</select>
+	
+	<insert id="add" parameterType="com.common.entity.GoldRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into logic_gold_record ( id
+			, memberId
+			, amount
+			, after
+			, createTime
+			, remark
+			, type
+			, roomId
+		) values ( #{id}
+			, #{memberId}
+			, #{amount}
+			, #{after}
+			, #{createTime}
+			, #{remark}
+			, #{type}
+			, #{roomId}
+		)
+	</insert>
+	
+	<select id="getListAll" resultType="com.common.entity.GoldRecord">
+		select * from logic_gold_record lg
+		where 1 = 1
+		<if test="null != goldRecord.memberId">
+			and lg.memberId = #{goldRecord.memberId}
+		</if>
+		<if test="null != goldRecord.roomId">
+			and lg.roomId = #{goldRecord.roomId}
+		</if>
+		order by ${orderColumn} ${orderDir}
+		limit #{startIndex}, #{endIndex}
+	</select>
+	
+	<select id="getListTotalAll"  parameterType="com.common.entity.GoldRecord" resultType="Integer">
+		select count(*) from logic_gold_record lg
+		where 1 = 1
+		<if test="null != goldRecord.memberId">
+			and lg.memberId = #{goldRecord.memberId}
+		</if>
+		<if test="null != goldRecord.roomId">
+			and lg.roomId = #{goldRecord.roomId}
+		</if>
+	</select>
+	
+</mapper>  

@@ -1,0 +1,17 @@
+package com.common.protocol;
+
+import com.cb.msg.PackageBase;
+
+public class LoginRequest extends PackageBase {
+
+	public String loginName;
+	public String passwd;
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" loginName=" + loginName);
+		sb.append(" passwd=" + passwd);
+		return sb.toString();
+	}
+}

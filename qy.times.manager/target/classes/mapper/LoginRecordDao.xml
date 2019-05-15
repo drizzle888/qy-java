@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.LoginRecordDao">
+
+	<select id="getByUserId" parameterType="Integer" resultType="com.manager.entity.LoginRecord">
+		select * from loginRecord where userId = #{userId}
+	</select>
+	
+	<insert id="addLoginRecord" parameterType="com.manager.entity.LoginRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into loginRecord ( userId
+			, createTime
+		) values ( #{userId}
+			, #{createTime}
+		)
+	</insert>
+	
+	<update id="updateLoginRecord" parameterType="com.manager.entity.LoginRecord">
+		update loginRecord set 
+		<if test="null != userId">
+			userId = #{userId}
+		</if>
+		<if test="null != createTime">
+			, createTime = #{createTime}
+		</if>
+		where id = #{id}
+	</update>
+
+</mapper>  

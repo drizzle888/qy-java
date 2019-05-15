@@ -1,0 +1,14 @@
+com\manager\common\ServerConfig.class
+com\manager\service\SchedulerService.class
+com\manager\constant\Profile.class
+com\manager\dao\LoginRecordDao.class
+com\manager\entity\LoginRecord.class
+com\manager\interceptor\LoginInterceptor.class
+com\manager\dao\UserDao.class
+com\manager\common\Appconfig.class
+com\manager\controller\TestController.class
+com\manager\service\TestService.class
+com\manager\entity\PackInfo.class
+com\manager\constant\GameConstant.class
+com\manager\service\FileService.class
+com\manager\entity\User.class

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.dao.RoundInfoDao">
+
+	<select id="getList" parameterType="com.manager.entity.RoundInfo" resultType="com.manager.entity.RoundInfo">
+		select * from logic_round_info 
+		where 1 = 1
+		<if test="null != masterId">
+			and masterId = #{masterId}
+		</if>
+		<if test="null != id">
+			and id = #{id}
+		</if>
+		order by id
+	</select>
+	 
+	<select id="getById" parameterType="Integer" resultType="com.manager.entity.RoundInfo">
+		select * from logic_round_info where id = #{id}
+	</select>
+	
+	<update id="edit" parameterType="com.manager.entity.RoundInfo">
+		update logic_round_info set
+		<if test="null != memberId1">
+			  memberId1 = #{memberId1}
+		</if>
+		<if test="null != memberId2">
+			, memberId2 = #{memberId2}
+		</if>
+		<if test="null != memberId3">
+			, memberId3 = #{memberId3}
+		</if>
+		<if test="null != memberId4">
+			, memberId4 = #{memberId4}
+		</if>
+		<if test="null != masterId">
+			 , masterId = #{masterId}
+		</if>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from logic_round_info where id = #{id}
+	</delete>
+	  
+</mapper>  
