@@ -1,0 +1,9 @@
+这是一款moba类游戏的服务器端，游戏名称尚未定
+整个系统用Java编写
+qy.times.common是公共类
+qy.times.game是游戏服务器，采用Socket通讯
+qy.times.path是自动寻路服务，采用Http通讯
+game.physic是物理引擎，负责战斗中的物理碰撞
+coffeeBean.net是网络通讯引擎
+com.tool.packet是通讯接口生成工具，能够根据定义的xml生成CSharp和Java通讯包对象
+com.tool.line为自动寻路服务提供地图数据，数据用Excel文档保存。
