@@ -1,0 +1,10 @@
+1. 网易云信：
+登录用户：33468106@qq.com
+登录密码：quyou.com
+
+App Key: 02fac6607f62efcdb6fee17a0c07a5ed
+App Secret: 272cbae99b53
+
+2. 外网服务器139.196.172.183
+登录用户：admin
+登录密码：33468106@qq.com
