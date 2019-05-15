@@ -14,5 +14,5 @@ public class BoxConstant {
 	public final static double box_shadow_radius = 0.2;
 	/**攻击一次宝箱的掉血量*/
 	public final static int hurt = 1;
-	// 测试git1
+	// 测试git2
 }
