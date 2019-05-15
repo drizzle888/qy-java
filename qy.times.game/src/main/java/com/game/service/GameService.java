@@ -169,6 +169,8 @@ public class GameService {
 			}
 		} else {
 			calcHurt(attRole, room, hurt, milliTime, beAttRole, true);
+			// 
+			
 		}
 	}
 	
